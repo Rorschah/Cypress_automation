@@ -24,11 +24,11 @@ describe('PricingPage', () =>
     {
         //WHEN
         // Web page opens
+        // Native mobile app button is clicked
+        cy.get('.button-group').click()
 
         //THEN
         // Check prices of mobile Startup package and Business package, that they are 960 CZK and 1960 CZK
-        cy.get('.button-group').click()
-
         cy.get(".package__price").contains('CZK 960')
         cy.get(".package__price").contains('CZK 1,960')
     })
@@ -37,12 +37,13 @@ describe('PricingPage', () =>
     {
         //WHEN
         // Web page opens
-
-        //THEN
-        // Check prices of mobile Startup package and Business package, that they are 960 CZK and 1960 CZK
+        // Build a plan button on startup box is clicked
+        // Is selected session limit 50,000
         cy.get('.button--primary[id="business-package-button"]').first().click()
         cy.get('.input').first().select('50,000')
 
+        //THEN
+        // Check that price is 1099 CZK
         cy.get(".modal-price").contains('CZK 1,099')
     })
   })
